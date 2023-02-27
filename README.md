@@ -161,7 +161,7 @@ cat schema.sql | sqlite3 test.db
 我们会使用如下方法测试你的query执行结果并与正确结果进行比较：
 
 ```bash
-sqlite3 TPC-H.db < Query1.txt
+sqlite3 test.db < 1.sql
 ```
 
 对于作业若有问题，可以在群聊/网络学堂提问。
