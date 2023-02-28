@@ -123,7 +123,7 @@ sqlite3 test.db < schema.sql
 
 **请严格按照schema.sql中的schema定义创建对应的表，否则自动评测可能失败**
 
-0. 将数据集导入数据库。导入所需的sqlite命令保存成`load.sql`。
+将数据集导入数据库。导入所需的sqlite命令保存成`load.sql`。
 
 我们在评测初始阶段会运行`sqlite3 test.db < load.sql`，请确保你的`load.sql`能够成功导入数据集。
 
@@ -160,9 +160,11 @@ sqlite3 test.db < schema.sql
 
 ## 提交与测试
 
+数据集导入部分提交`load.sql`即可
+
 针对每个查询，提交一个 SQL 文件，文件名为`<题号>.sql` 如 `1.sql`、`2.sql`等，文件内容为你的 SQL 语句。第6题为语言描述，保存`6.txt`即可。
 
-请将所有文件保存至根目录下，并push到自己的作业仓库中。Github CI会自动对你提交的commit进行评测。
+请将所有文件保存至repo的根目录下（和`schema.sql`在一个目录下），并push到自己的作业仓库中。Github CI会自动对你提交的commit进行评测。
 
 我们会使用如下方法测试你的query执行结果并与`outputs/`下的正确结果进行比较：
 
