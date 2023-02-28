@@ -162,11 +162,13 @@ cat schema.sql | sqlite3 test.db
 
 请将所有文件保存至根目录下，并push到自己的作业仓库中。Github CI会自动对你提交的commit进行评测。
 
-我们会使用如下方法测试你的query执行结果并与正确结果进行比较：
+我们会使用如下方法测试你的query执行结果并与`outputs/`下的正确结果进行比较：
 
 ```bash
 sqlite3 test.db < 1.sql
 ```
+
+不允许修改`outputs/`内的文件和`test.py`，我们在作业截止时会验证这些文件没有被修改。
 
 对于作业若有问题，可以在群聊/网络学堂提问。
 
