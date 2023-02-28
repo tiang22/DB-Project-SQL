@@ -121,6 +121,8 @@ sudo mysql -uroot -p
 cat schema.sql | sqlite3 test.db
 ```
 
+**请严格按照schema.sql中的schema定义创建对应的表，否则自动评测可能失败**
+
 将数据集导入数据库的步骤需要同学们自己完成。
 
 ## 单表查询 5*1pts
