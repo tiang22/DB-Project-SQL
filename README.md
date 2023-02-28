@@ -123,9 +123,9 @@ sqlite3 test.db < schema.sql
 
 **请严格按照schema.sql中的schema定义创建对应的表，否则自动评测可能失败**
 
-将数据集导入数据库。导入所需的sqlite命令保存成`load.sql`。
+你需要将数据集导入数据库，并将导入所需的命令保存成`load.sql`。
 
-我们在评测初始阶段会运行`sqlite3 test.db < load.sql`，请确保你的`load.sql`能够成功导入数据集。
+我们在评测初始阶段会依次运行`sqlite3 test.db < schema.sql`和`sqlite3 test.db < load.sql`，请确保你写的`load.sql`能够成功导入数据集。
 
 ## 单表查询 5*1pts
 
