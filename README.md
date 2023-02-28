@@ -118,12 +118,14 @@ sudo mysql -uroot -p
 我们已经提供了创建表的SQL语句，例如在Linux和mac中可以通过以下方式创建表：
 
 ```bash
-cat schema.sql | sqlite3 test.db
+sqlite3 test.db < schema.sql
 ```
 
 **请严格按照schema.sql中的schema定义创建对应的表，否则自动评测可能失败**
 
-将数据集导入数据库的步骤需要同学们自己完成。
+0. 将数据集导入数据库。导入所需的sqlite命令保存成`load.sql`。
+
+我们在评测初始阶段会运行`sqlite3 test.db < load.sql`，请确保你的`load.sql`能够成功导入数据集。
 
 ## 单表查询 5*1pts
 
