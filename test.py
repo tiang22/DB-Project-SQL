@@ -24,7 +24,7 @@ def test(i):
         print(f'Test {i} passed')
     else:
         print(f'Test {i} failed')
-    time.sleep(3)
+    time.sleep(1)
     
 
 if __name__ == '__main__':
