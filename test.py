@@ -4,7 +4,7 @@ def test_load():
     os.system('sqlite3 test.db < schema.sql')
     os.system('sqlite3 test.db < load.sql')
     data_files = os.listdir('data')
-    expected = open(f'outputs/0.out').read()
+    expected = open(f'outputs/0_nuc.out').read()
     out = ''
     for name in data_files:
         tbl_name = name.split('.')[0]
