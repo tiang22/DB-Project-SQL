@@ -13,7 +13,7 @@ def test(i):
     expected = open(f'outputs/{i}.out').read()
     out = os.popen(f'sqlite3 test.db < {i}.sql').read()
     if expected == out:
-        print(f'Test {i0} passed')
+        print(f'Test {i} passed')
     else:
         print(f'Test {i} failed')
     time.sleep(3)
