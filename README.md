@@ -64,23 +64,19 @@ sqlite3 test.db < schema.sql
 
 ## 本地测试
 
+```shell
+make grade
+```
+
 ## 提交
 
 ```shell
 make submit
 ```
 
-数据集导入部分提交`load.sql`即可
+会在上级目录创建文件：`p0-submission.zip`。或者手动将`load.sql`, `1.sql`, `2.sql`, ..., `8.sql`打包压缩为`p0-submission.zip`。
 
-针对每个查询，提交一个 SQL 文件，文件名为`<题号>.sql` 如 `1.sql`、`2.sql`等，文件内容为你的 SQL 语句。
-
-请将所有文件保存至repo的根目录下（和`schema.sql`在一个目录下），并push到自己的作业仓库中。Github CI会自动对你提交的commit进行评测。
-
-我们会使用如下方法测试你的query执行结果并与`outputs/`下的正确结果进行比较：
-
-```bash
-sqlite3 test.db < 1.sql
-```
+然后将`p0-submission.zip`提交到autolab即可。
 
 对于作业若有问题，可以在群聊/网络学堂提问。
 
