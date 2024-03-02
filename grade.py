@@ -1,6 +1,8 @@
 import os,time,sys
+import json
 
 def test_load():
+    os.system('make clean')
     os.system('sqlite3 test.db < schema.sql')
     os.system('sqlite3 test.db < load.sql')
     data_files = os.listdir('data')
@@ -11,10 +13,11 @@ def test_load():
         tbl_name = name.split('.')[0]
         out += os.popen(f'echo \"select * from {tbl_name};\" | sqlite3 test.db').read()
     if expected != out:
-        print(f'Test 0 failed')
-        return
-    print(f'Test 0 passed')
-        
+        print('Test 0 failed')
+        return 0
+    print('Test 0 passed')
+    return 1
+
 def test(i):
     expected = open(f'outputs/{i}.out').read()
     out = os.popen(f'sqlite3 test.db < {i}.sql').read()
@@ -22,14 +25,28 @@ def test(i):
         out = os.popen(f'echo \"select L_TAX from lineitem WHERE L_DISCOUNT > 0.02;\" | sqlite3 test.db').read()
     if expected == out:
         print(f'Test {i} passed')
+        return 1
     else:
         print(f'Test {i} failed')
-    time.sleep(1)
-    
+        return 0
 
 if __name__ == '__main__':
-    cmd = sys.argv[1]
-    if cmd == 'create':
-        test_load()
+    if len(sys.argv) == 1:
+        scores = {}
+        if test_load():
+            scores['Load'] = 2
+            for i in range(1, 9):
+                prob = 'Prob{}'.format(i)
+                if test(i):
+                    scores[prob] = 1
+                else:
+                    scores[prob] = 0
+        else:
+            scores['Load'] = 0
+        print(json.dumps({'scores': scores}))
     else:
-        test(int(cmd))
+        cmd = sys.argv[1]
+        if cmd == 'load':
+            test_load()
+        else:
+            test(int(cmd))
