@@ -1,12 +1,12 @@
 grade:
 	python3 grade.py
 
-submit: ../p0-submission.zip
+submit: ../submission.zip
 
 clean:
 	rm -f test.db
 
-../p0-submission.zip: load.sql 1.sql 2.sql 3.sql 4.sql 5.sql 6.sql 7.sql 8.sql
+../submission.zip: load.sql 1.sql 2.sql 3.sql 4.sql 5.sql 6.sql 7.sql 8.sql
 	zip $@ $^
 
 ../autograde.tar: Makefile data grade.py outputs schema.sql
