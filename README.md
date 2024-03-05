@@ -74,9 +74,9 @@ make grade
 make submit
 ```
 
-会在上级目录创建文件：`p0-submission.zip`。或者手动将`load.sql`, `1.sql`, `2.sql`, ..., `8.sql`打包压缩为`p0-submission.zip`。
+会在上级目录创建文件：`submission.zip`。或者手动将`load.sql`, `1.sql`, `2.sql`, ..., `8.sql`打包压缩为`submission.zip`。
 
-然后将`p0-submission.zip`提交到autolab即可。
+然后将`submission.zip`提交到autolab即可。
 
 对于作业若有问题，可以在群聊/网络学堂提问。
 
