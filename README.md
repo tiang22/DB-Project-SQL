@@ -1,85 +1,74 @@
-# SQL 实验
+# The SQL Experiment
 
-## 安装sqlite3
+## Install sqlite3
 
 ### Linux
 
 ```shell
-# Arch系
+# Arch
 sudo pacman -S --needed sqlite3
-# Debian系
+# Debian
 sudo apt install sqlite3
 ```
 
 ### MacOS
 
-对于 macOS 用户，在终端中输入 `sqlite3` 即可使用系统预装软件包
+`sqlite3` has been preinstalled.
 
 ### Windows
 
-在[官网](https://www.sqlite.org/download.html)下载 `sqlite-tools-win` 软件包，然后添加到系统变量
+Download `sqlite-tools-win` in <https://www.sqlite.org/download.html>, and then add environment variables to the system.
 
-## 数据集导入 2pts
+## Import dataset (2pts)
 
-我们使用 TPC-H 基准测试程序的数据集作为作业的数据来源。本项目中包含了TPC-H的[specification](tpc-h_v3.0.0.pdf)，你可以在里面 (Page 13)找到每张数据表的schema。
+We use the dataset in TPC-H in this experiment: the csv files under `data/`. This repo includes the specification of TPC-H: `tpc-h_v3.0.0.pdf`. Page 13 includes the schema of each table.
 
-具体来说，我们提供了一些 csv 文件位于```data/```目录下，你们需要首先将其导入数据库中。
-
-我们已经提供了创建表的SQL语句，例如在Linux和mac中可以通过以下方式创建表：
+We have provided the SQL statements to create tables: `schema.sql`. You may create tables on Linux and Mac in this way:
 
 ```bash
 sqlite3 test.db < schema.sql
 ```
 
-**请严格按照schema.sql中的schema定义创建对应的表，否则自动评测可能失败**
+Then you should import the dataset into the database. The statements should be saved in `load.sql`.
 
-你需要将数据集导入数据库，并将导入所需的命令保存成`load.sql`。
+## Single table queries (5*1pts)
 
-我们在评测初始阶段会依次运行`sqlite3 test.db < schema.sql`和`sqlite3 test.db < load.sql`，请确保你写的`load.sql`能够成功导入数据集。
+Save the SQL statements of the following queries in `<number>.sql`, such as `1.sql`, `2.sql`, etc. For some queries, we list the tables needed by the query in the brackets at the beginning of the query description.
 
-## 单表查询 5*1pts
+Please note the order of the queries. An earlier query may affect a later query.
 
-对于以下需求，设计 SQL 语句输出结果，并将对应的 SQL 语句保存为 `<题号>.sql`，如 `1.sql`、`2.sql`等。若题目前有括号，则括号内标注了所需要的表。
+1. (`ORDERS`) Get the sum of `O_TOTALPRICE` of each customer with >20 orders. Each result row should include `O_CUSTKEY`, the sum of `O_TOTALPRICE`, and the number of orders.
+2. (`LINEITEM`) Add 10% to the tax of items with a discount >0.02.
+3. (`LINEITEM`) For each order, get the average discount of items with taxes <0.05. The results should be ordered by the average discount from largest to smallest. Only show the top 10 orders. Each result row should include `L_ORDERKEY` and the average discount.
+4. (`LINEITEM`) Get the items with the largest discount. Each result row should include `L_ORDERKEY` and `L_LINENUMBER`.
+5. (`PARTSUPP`) Get the sum of `PS_AVAILQTY` of each `PS_PARTKEY`. Each result row should include `PS_PARTKEY` and the sum of `PS_AVAILQTY`.
 
-注意以下语句顺序执行，前序操作可能影响后续结果
+## Multi-table queries (3*1pts)
 
-1. （`ORDERS`）求 `order` 数大于 20 的 `customer` 的 `O_TOTALPRICE`之和（求和，即每个 customer 返回一条记录）。最终结果中包括`O_CUSTKEY`，`O_TOTALPRICE`之和，以及order的数量。
-2. （`LINEITEM`）对 `discount` 大于 0.02 的 `tax` 加 10%
-3. （`LINEITEM`）对所有 `tax` 小于 0.05 的物品（`L_ORDERKEY`, `L_LINENUMBER`）按照 `L_ORDERKEY` 计算平均 `discount`。最终结果需满足：
-   1. 对结果按平均 `discount` 从大到小排序
-   2. 展示平均 `discount` 最大的 10 行
+6. (`CUSTOMER`, `ORDERS`, `NATION`) Get the total price of all orders whose customers are from `CHINA`.
 
-   最终结果中包括 `L_ORDERKEY`和平均 `discount`。
-4. （`LINEITEM`）求 `discount` 最大的 `item`，最终结果用 `L_ORDERKEY` 和 `L_LINENUMBER` 表示
-   1. 禁止使用 `agg` 操作（即需要用基本运算符表示MAX的逻辑）
-5. （`PARTSUPP`）对于相同的 `PS_PARTKEY`，求所有供应商的 `PS_AVAILQTY` 之和。最终结果包括`PS_PARTKEY`和对应的 `PS_AVAILQTY` 之和。
+7. (`CUSTOMER`, `ORDERS`) Find all customers with at least one order whose total price <10000. Each result row should include all columes in `CUSTOMER`.
 
-## 多表查询 3*1pts
+8. Find suppliers with >100 unique customers. Each result row should include the name of the supplier and the number of unique customers. The results should be ordered by the number of unique customers from largest to smallest.
 
-6. （`CUSTOMER`, `ORDERS`, `NATION`）求出所有来自中国（`CHINA`）的客户的所有订单的总金额。
-
-7. （`CUSTOMER`, `ORDERS`）求所有 `total_price` 小于 10000 的 `customer` 行。最终结果包括满足条件的 `customer` 的 所有列。
-
-8. 找到订单(order)来自超过100个**不同**客户(customer)的所有供应商(supplier)。最终结果中包括供应商的名称和不同客户的数量，并按照客户的数量从大到小排序。
-
-## 本地测试
+## Local test
 
 ```shell
 make grade
 ```
 
-## 提交
+## Submit
 
 ```shell
 make submit
 ```
 
-会在上级目录创建文件：`submission.zip`。或者手动将`load.sql`, `1.sql`, `2.sql`, ..., `8.sql`打包压缩为`submission.zip`。
+`submission.zip` will be created in the parent directory. You may also pack `load.sql`, `1.sql`, `2.sql`, ..., and `8.sql` into `submission.zip` manually.
 
-然后将`submission.zip`提交到autolab即可。
+Then `submission.zip` should be submitted to autolab.
 
-对于作业若有问题，可以在群聊/网络学堂提问。
+If you have any questions, you may ask them in the WeChat group or Web Learning (aka 网络学堂).
 
-## 一些可能有用的链接
+## Links you may find useful
 
 <https://www.runoob.com/sqlite/sqlite-tutorial.html>
