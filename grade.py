@@ -21,6 +21,9 @@ def test_load():
 def test(i):
     expected = open(f'outputs/{i}.out').read()
     out = os.popen(f'sqlite3 test.db < {i}.sql').read()
+    if len(out) != 0:
+        print(f'Test {i} failed')
+        return 0
     if i == 2:
         out = os.popen(f'echo \"select L_TAX from lineitem WHERE L_DISCOUNT > 0.02;\" | sqlite3 test.db').read()
     if expected == out:
