@@ -38,7 +38,7 @@ Save the SQL statements of the following queries in `<number>.sql`, such as `1.s
 Please note the order of the queries. An earlier query may affect a later query.
 
 1. (`ORDERS`) Get the sum of `O_TOTALPRICE` of each customer with >20 orders. Each result row should include `O_CUSTKEY`, the sum of `O_TOTALPRICE`, and the number of orders.
-2. (`LINEITEM`) Add 10% to the tax of items with a discount >0.02.
+2. (`LINEITEM`) Increase the tax on items with a discount >0.02 by 10%.
 3. (`LINEITEM`) For each order, get the average discount of items with taxes <0.05. The results should be ordered by the average discount from largest to smallest. Only show the top 10 orders. Each result row should include `L_ORDERKEY` and the average discount.
 4. (`LINEITEM`) Get the items with the largest discount. Each result row should include `L_ORDERKEY` and `L_LINENUMBER`.
 5. (`PARTSUPP`) Get the sum of `PS_AVAILQTY` of each `PS_PARTKEY`. Each result row should include `PS_PARTKEY` and the sum of `PS_AVAILQTY`.
