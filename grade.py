@@ -26,6 +26,9 @@ def test(i):
             print(f'Test {i} failed')
             return 0
         out = os.popen(f'echo \"select L_TAX from lineitem WHERE L_DISCOUNT > 0.02;\" | sqlite3 test.db').read()
+    if i in [1, 2, 3, 4, 5, 7]:
+        expected = sorted(expected.splitlines())
+        out = sorted(out.splitlines())
     if expected == out:
         print(f'Test {i} passed')
         return 1
