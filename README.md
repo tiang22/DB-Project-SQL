@@ -47,9 +47,9 @@ Please note the order of the queries. An earlier query may affect a later query.
 
 6. (`CUSTOMER`, `ORDERS`, `NATION`) Get the total price of all orders whose customers are from `CHINA`.
 
-7. (`CUSTOMER`, `ORDERS`) Find all customers with at least one order whose total price <10000. Each result row should include all columes in `CUSTOMER`.
+7. (`CUSTOMER`, `ORDERS`) Find all customers with at least one order whose total price <10000. Each result row should include all columns in `CUSTOMER`.
 
-8. Find suppliers with >100 unique customers. Each result row should include the name of the supplier and the number of unique customers. The results should be ordered by the number of unique customers from largest to smallest.
+8. Find suppliers with >100 unique customers. Each result row should include the name of the supplier and the number of unique customers. The results should be firstly ordered by the number of unique customers from largest to smallest then ordered by the name of the supplier in descending order.
 
 ## Local test
 
