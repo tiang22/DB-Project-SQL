@@ -11,7 +11,7 @@ def test_load():
     out = ''
     for name in data_files:
         tbl_name = name.split('.')[0]
-        out += os.popen(f'echo \"select * from {tbl_name};\" | sqlite3 test.db').read()
+        out += os.popen(f'echo "select * from {tbl_name};" | sqlite3 test.db').read()
     if expected != out:
         print('Test 0 failed')
         return 0
