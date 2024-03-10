@@ -11,7 +11,7 @@ def test_load():
     out = ''
     for name in data_files:
         tbl_name = name.split('.')[0]
-        out += os.popen(f'echo "select * from {tbl_name};" | sqlite3 test.db').read()
+        out += os.popen(f'sqlite3 test.db "select * from {tbl_name};"').read()
     if expected != out:
         print('Test 0 failed')
         return 0
@@ -25,7 +25,7 @@ def test(i):
         if len(out) != 0:
             print(f'Test {i} failed')
             return 0
-        out = os.popen(f'echo "select L_TAX from lineitem WHERE L_DISCOUNT > 0.02;" | sqlite3 test.db').read()
+        out = os.popen(f'sqlite3 test.db "select L_TAX from lineitem WHERE L_DISCOUNT > 0.02;"').read()
     if i in [1, 2, 3, 4, 5, 7]:
         expected = sorted(expected.splitlines())
         out = sorted(out.splitlines())
