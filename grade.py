@@ -3,8 +3,8 @@ import json
 
 def test_load():
     os.system('make clean')
-    os.system('sqlite3 test.db < schema.sql')
-    os.system('sqlite3 test.db < load.sql')
+    os.system('sqlite3 test.db ".read schema.sql"')
+    os.system('sqlite3 test.db ".read load.sql"')
     data_files = os.listdir('data')
     data_files.sort()
     expected = open(f'outputs/0.out').read()
@@ -20,7 +20,7 @@ def test_load():
 
 def test(i):
     expected = open(f'outputs/{i}.out').read()
-    out = os.popen(f'sqlite3 test.db < {i}.sql').read()
+    out = os.popen(f'sqlite3 test.db ".read {i}.sql"').read()
     if i == 2:
         if len(out) != 0:
             print(f'Test {i} failed')
