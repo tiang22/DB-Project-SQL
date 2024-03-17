@@ -63,9 +63,12 @@ make grade
 make submit
 ```
 
-`submission.zip` will be created in the parent directory. You may also pack `load.sql`, `1.sql`, `2.sql`, ..., and `8.sql` into `submission.zip` manually.
+`submission.zip` will be created in the parent directory. Then `submission.zip` should be submitted to autolab.
 
-Then `submission.zip` should be submitted to autolab.
+For windows users:
+
+1. The autograder runs on Linux whose path separator is `/`. Therefore, Windows users should replace the path separator `\` in `load.sql` with `/` before submitting.
+2. `zip` command is not available on Windows by default. Therefore, Windows users need to pack `.sql` files into `submission.zip` manually.
 
 If you have any questions, you may ask them in the WeChat group or Web Learning (aka 网络学堂).
 
