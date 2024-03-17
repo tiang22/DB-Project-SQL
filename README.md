@@ -57,6 +57,16 @@ Please note the order of the queries. An earlier query may affect a later query.
 make grade
 ```
 
+You may also test problems one by one:
+
+```shell
+python3 grade.py load
+python3 grade.py 1
+python3 grade.py 2
+python3 grade.py 3
+...
+```
+
 ## Submit
 
 ```shell
@@ -65,7 +75,7 @@ make submit
 
 `submission.zip` will be created in the parent directory. Then `submission.zip` should be submitted to autolab.
 
-For windows users:
+For Windows users:
 
 1. The autograder runs on Linux whose path separator is `/`. Therefore, Windows users should replace the path separator `\` in `load.sql` with `/` before submitting.
 2. `zip` command is not available on Windows by default. Therefore, Windows users need to pack `.sql` files into `submission.zip` manually.
