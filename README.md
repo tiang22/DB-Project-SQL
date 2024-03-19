@@ -82,6 +82,8 @@ For Windows users:
 
 If you have any questions, you may ask them in the WeChat group or Web Learning (aka 网络学堂).
 
-## Links you may find useful
+## Links you may find useqful
 
 <https://www.runoob.com/sqlite/sqlite-tutorial.html>
+
+[How to import a csv file whose columns are separated by semicolons](https://sqlite.org/forum/forumpost/6b41812741)
