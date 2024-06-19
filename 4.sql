@@ -1,0 +1,14 @@
+WITH Max_Discount(MAX_DISCOUNT) AS (
+    SELECT
+        MAX(L_DISCOUNT)
+    FROM
+        LINEITEM
+)
+SELECT
+    L_ORDERKEY,
+    L_LINENUMBER
+FROM
+    LINEITEM,
+    Max_Discount
+WHERE
+    L_DISCOUNT = MAX_DISCOUNT

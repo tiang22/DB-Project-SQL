@@ -1,0 +1,6 @@
+UPDATE
+    LINEITEM
+SET
+    L_TAX = 1.1 * L_TAX
+WHERE
+    L_DISCOUNT > 0.02
