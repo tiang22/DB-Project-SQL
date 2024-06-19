@@ -1,0 +1,26 @@
+WITH Supplier_Customer(SUP, CUS) AS (
+    SELECT
+        S.S_NAME,
+        C.C_CUSTKEY
+    FROM
+        SUPPLIER AS S,
+        LINEITEM AS L,
+        ORDERS AS O,
+        CUSTOMER AS C
+    WHERE
+        S.S_SUPPKEY = L.L_SUPPKEY
+        AND C.C_CUSTKEY = O.O_CUSTKEY
+        AND O.O_ORDERKEY = L.L_ORDERKEY
+)
+SELECT
+    SUP,
+    COUNT(DISTINCT CUS) AS NUM_CUS
+FROM
+    Supplier_Customer
+GROUP BY
+    SUP
+HAVING
+    COUNT(DISTINCT CUS) > 100
+ORDER BY
+    NUM_CUS DESC,
+    SUP DESC
