@@ -31,7 +31,7 @@ sqlite3 test.db < schema.sql
 
 Then you should import the dataset into the database. The statements should be saved in `load.sql`.
 
-## Single table queries (5*1pts)
+## Single table queries (5\*1pts)
 
 Save the SQL statements of the following queries in `<number>.sql`, such as `1.sql`, `2.sql`, etc. For some queries, we list the tables needed by the query in the brackets at the beginning of the query description.
 
@@ -43,7 +43,7 @@ Please note the order of the queries. An earlier query may affect a later query.
 4. (`LINEITEM`) Get the items with the largest discount. Each result row should include `L_ORDERKEY` and `L_LINENUMBER`.
 5. (`PARTSUPP`) Get the sum of `PS_AVAILQTY` of each `PS_PARTKEY`. Each result row should include `PS_PARTKEY` and the sum of `PS_AVAILQTY`.
 
-## Multi-table queries (3*1pts)
+## Multi-table queries (3\*1pts)
 
 6. (`CUSTOMER`, `ORDERS`, `NATION`) Get the total price of all orders whose customers are from `CHINA`.
 
